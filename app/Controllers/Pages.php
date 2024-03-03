@@ -10,9 +10,7 @@ class Pages extends BaseController
             'title' => 'Code Igniter | Home',
             'tes' => ['satu', 'dua', 'tiga']
         ];
-        echo view('layout/header', $data);
-        echo view('pages/home');
-        echo view('layout/footer');
+        return view('pages/home', $data);
     }
 
     public function about()
@@ -20,8 +18,27 @@ class Pages extends BaseController
         $data = [
             'title' => 'Code Igniter | About'
         ];
-        echo view('layout/header', $data);
-        echo view('pages/about');
-        echo view('layout/footer');
+        return view('pages/about', $data);
+    }
+
+    public function contact()
+    {
+        $data = [
+            'title' => 'Code Igniter | Contact',
+            'alamat' => [
+                [
+                    'tipe' => 'Rumah',
+                    'alamat' => 'Jl. Tongkol No.123',
+                    'kota' => 'Cilacap'
+                ],
+                [
+                    'tipe' => 'Kantor',
+                    'alamat' => 'Jl. Mujair No.123',
+                    'kota' => 'Cilacap'
+                ]
+            ]
+            
+        ];
+        return view('pages/contact', $data);
     }
 }

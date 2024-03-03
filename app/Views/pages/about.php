@@ -1,3 +1,7 @@
+<?= $this->extend('layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <section class="bg-white dark:bg-gray-900">
     <div class="items-center max-w-screen-xl gap-16 px-4 py-8 mx-auto lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div class="text-gray-500 sm:text-lg dark:text-gray-400">
@@ -11,3 +15,5 @@
         </div>
     </div>
 </section>
+
+<?= $this->endSection(); ?>
