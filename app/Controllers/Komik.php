@@ -14,15 +14,24 @@ class Komik extends BaseController
 
     public function index()
     {
-        $komik = $this->komikModel->findAll();
+        // $komik = $this->komikModel->findAll();
 
         $data = [
             'title' => 'Code Igniter | Komik',
-            'komik' => $komik
+            'komik' => $this->komikModel->getKomik()
         ];
 
         // $komikModel = new KomikModel();
 
         return view('komik/index', $data);
+    }
+
+    public function detail($slug)
+    {
+        $data = [
+            'title' => 'Code Igniter | Detail Komik',
+            'komik' => $this->komikModel->getKomik($slug)
+        ];
+        return view('komik/detail', $data);
     }
 }
