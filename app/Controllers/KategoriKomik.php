@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\KomikModel;
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\ResponseInterface;
 
-class Komik extends BaseController
+class KategoriKomik extends BaseController
 {
     protected $komikModel;
     public function __construct()

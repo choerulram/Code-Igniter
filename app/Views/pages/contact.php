@@ -3,13 +3,13 @@
 <?= $this->section('content'); ?>
 
 <section class="bg-white dark:bg-gray-900">
-    <?php foreach ($alamat as $a) : ?>
+    <!-- <?php foreach ($alamat as $a) : ?>
         <ul>
             <li><?= $a['tipe']; ?></li>
             <li><?= $a['alamat']; ?></li>
             <li><?= $a['kota']; ?></li>
         </ul>
-    <?php endforeach; ?>
+    <?php endforeach; ?> -->
     <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-12">
         <a href="#" class="inline-flex items-center justify-between px-1 py-1 pr-4 text-sm text-gray-700 bg-gray-100 rounded-full mb-7 dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700" role="alert">
             <span class="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 mr-3">New</span> <span class="text-sm font-medium">Flowbite is out! See what's new</span>
