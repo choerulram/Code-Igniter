@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\KategoriKomik;
 use CodeIgniter\Router\RouteCollection;
 use CodeIgniter\I18n\Time;
 
@@ -10,6 +11,9 @@ use CodeIgniter\I18n\Time;
 // LATIHAN ROUTES
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Pages::index');
+// $routes->get('/', function(){
+//     $model = new Coba
+// });
 $routes->get('/pages/about', 'Pages::about');
 $routes->get('/pages/contact', 'Pages::contact');
 
@@ -22,7 +26,12 @@ $routes->post('/komik/update/(:segment)', 'Komik::update/$1');
 $routes->post('/komik/save', 'Komik::save');
 
 // KATEGORI KOMIK
-$routes->get('/komik/index', 'Komik::index');
+$routes->get('/kategorikomik/index', 'KategoriKomik::index');
+$routes->get('/kategorikomik/create', 'KategoriKomik::create');
+$routes->post('/kategorikomik/save', 'KategoriKomik::save');
+$routes->delete('/kategorikomik/index/(:num)', 'KategoriKomik::delete/$1');
+$routes->get('/kategorikomik/edit/(:segment)', 'KategoriKomik::edit/$1');
+$routes->post('/kategorikomik/update/(:segment)', 'KategoriKomik::update/$1');
 
 
 // HELPER
@@ -30,6 +39,10 @@ $routes->get('/number', function(){
     helper('number');
     echo number_to_currency(1234.56, 'IDR', 'id_ID', 2);
 });
+
+// $routes->get('/coba', function(){
+//     $table = new 
+// })
 
 // $routes->get('/number', function(){
 //     helper('number');

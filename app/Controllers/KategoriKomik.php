@@ -1,85 +1,72 @@
 <?php
 
+// mendefinisikan class
 namespace App\Controllers;
 
+// import kelas
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\KategoriKomikModel;
+// use CodeIgniter\HTTP\ResponseInterface;
 
 class KategoriKomik extends BaseController
 {
-    protected $komikModel;
+    protected $kategoriKomikModel;
     public function __construct()
     {
-        $this->komikModel = new KomikModel();
+        $this->kategoriKomikModel = new KategoriKomikModel(); // inisiasi
     }
 
     public function index()
     {
-        // $komik = $this->komikModel->findAll();
+        // $kategorikomik = $this->kategoriKomikModel->findAll();
 
         $data = [
-            'title' => 'Code Igniter | Komik',
-            'komik' => $this->komikModel->getKomik()
+            'title' => 'Code Igniter | Kategori Komik',
+            'komik' => $this->kategoriKomikModel->getKomik()
         ];
 
-        // $komikModel = new KomikModel();
+        // $kategoriKomikModel = new kategoriKomikModel();
 
-        return view('komik/index', $data);
-    }
-
-    public function detail($slug)
-    {
-        $data = [
-            'title' => 'Code Igniter | Detail Komik',
-            'komik' => $this->komikModel->getKomik($slug)
-        ];
-
-        if(empty($data['komik'])) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Judul Komik ' . $slug . ' tidak ditemukan');
-        }
-
-        return view('komik/detail', $data);
+        return view('kategorikomik/index', $data);
     }
 
     public function create()
     {
         $data = [
-            'title' => 'Code Igniter | Tambah Data Komik'
+            'title' => 'Code Igniter | Tambah Data Kategori Komik'
         ];
-        return view('komik/create', $data);
+        return view('kategorikomik/create', $data);
     }
 
     public function save()
     {
-        $slug = url_title($this->request->getVar('judul'), '-', true);
-        $this->komikModel->save([
-            'judul' => $this->request->getVar('judul'),
-            'slug' => $slug,
-            'penulis' => $this->request->getVar('penulis'),
-            'penerbit' => $this->request->getVar('penerbit'),
-            'sampul' => $this->request->getVar('sampul')
+        $this->kategoriKomikModel->save([
+            'nama_kategori' => $this->request->getVar('nama_kategori'), // getVar = input handling
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'tanggal_pembuatan' => $this->request->getVar('tanggal_pembuatan'),
+            'tanggal_pembaruan' => $this->request->getVar('tanggal_pembaruan')
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 
-        return redirect()->to('/komik/index');
+        return redirect()->to('/kategorikomik/index');
     }
 
     public function delete($id)
     {
-        $this->komikModel->delete($id);
+        $this->kategoriKomikModel->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
-        return redirect()->to('/komik/index');
+        return redirect()->to('/kategorikomik/index');
     }
 
-    public function edit($slug) 
+    public function edit($id) 
     {
         $data = [
-            'title' => 'Code Igniter | Edit Data Komik',
+            'title' => 'Code Igniter | Edit Data Kategori Komik',
             'validation' => \Config\Services::validation(),
-            'komik' => $this->komikModel->getKomik($slug)
+            'komik' => $this->kategoriKomikModel->getKomik($id)
         ];
-        return view('komik/edit', $data);
+        return view('kategorikomik/edit', $data);
     }
 
     public function update($id)
@@ -97,18 +84,16 @@ class KategoriKomik extends BaseController
         //     return redirect()->to('/komik/edit/' . $this->request->getVar())->withInput()->with('validation', $validation);
         // }
 
-        $slug = url_title($this->request->getVar('judul'), '-', true);
-        $this->komikModel->save([
+        $this->kategoriKomikModel->save([
             'id' => $id,
-            'judul' => $this->request->getVar('judul'),
-            'slug' => $slug,
-            'penulis' => $this->request->getVar('penulis'),
-            'penerbit' => $this->request->getVar('penerbit'),
-            'sampul' => $this->request->getVar('sampul')
+            'nama_kategori' => $this->request->getVar('nama_kategori'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'tanggal_pembuatan' => $this->request->getVar('tanggal_pembuatan'),
+            'tanggal_pebaruan' => $this->request->getVar('tanggal_pebaruan')
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
 
-        return redirect()->to('/komik/index');;
+        return redirect()->to('/kategorikomik/index');;
     }
 }

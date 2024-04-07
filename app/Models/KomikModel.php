@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class KomikModel extends Model
 {
-    protected $table = 'komik';
-    protected $useTimestamps = true;
+    protected $table = 'komik'; // mendefinisikan nama tabel
+    protected $useTimestamps = true; // set timestamp default
     protected $allowedFields = ['judul', 'slug', 'penulis', 'penerbit', 'sampul'];
 
     public function getKomik($slug = false)

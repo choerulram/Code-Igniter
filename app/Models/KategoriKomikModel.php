@@ -6,16 +6,16 @@ use CodeIgniter\Model;
 
 class KategoriKomikModel extends Model
 {
-    protected $table = 'komik';
-    protected $useTimestamps = true;
-    protected $allowedFields = ['judul', 'slug', 'penulis', 'penerbit', 'sampul'];
+    protected $table = 'kategori_komik'; // mendefinisikan nama tabel
+    protected $useTimestamps = true; // set timestamp default
+    protected $allowedFields = ['nama_kategori', 'deskripsi', 'tanggal_pembuatan', 'tanggal_pembaruan']; // mendefinisikan isi tabel
 
-    public function getKomik($slug = false)
+    public function getKomik($id = null)
     {
-        if($slug == false) {
+        if ($id == null) {
             return $this->findAll();
         }
-
-        return $this->where(['slug' => $slug])->first();
+        return $this->where(['id' => $id])->first();
     }
+
 }
